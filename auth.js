@@ -1,12 +1,7 @@
 // Общий скрипт авторизации для всех страниц
 const AUTHORIZED_EMAILS = [
-    'booster1@example.com',
-    'booster2@example.com',
-    'booster3@example.com',
-    'admin@brx.com',
-    'whale@brx.com',
-    'leonid@brx.com',
-    'xavin@brx.com'
+    'sasapirhavko@gmail.com',
+    'd61429225@gmail.com'
     // Добавьте сюда email-адреса ваших бустеров
 ];
 
