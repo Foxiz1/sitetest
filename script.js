@@ -1,6 +1,97 @@
+// Система авторизации
+const AUTHORIZED_EMAILS = [
+    'booster1@example.com',
+    'booster2@example.com',
+    'booster3@example.com',
+    'admin@brx.com',
+    'whale@brx.com',
+    'leonid@brx.com',
+    'xavin@brx.com'
+    // Добавьте сюда email-адреса ваших бустеров
+];
+
+// Проверка авторизации при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    // Проверяем, авторизован ли пользователь
+    const isAuthorized = localStorage.getItem('brx_authorized') === 'true';
+    const userEmail = localStorage.getItem('brx_user_email');
+    
+    if (isAuthorized && userEmail && AUTHORIZED_EMAILS.includes(userEmail)) {
+        showMainContent();
+    } else {
+        showAuthModal();
+    }
+    
+    // Обработка формы авторизации
+    const authForm = document.getElementById('auth-form');
+    const emailInput = document.getElementById('email-input');
+    const errorMessage = document.getElementById('error-message');
+    
+    authForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = emailInput.value.trim().toLowerCase();
+        
+        if (AUTHORIZED_EMAILS.includes(email)) {
+            // Успешная авторизация
+            localStorage.setItem('brx_authorized', 'true');
+            localStorage.setItem('brx_user_email', email);
+            showMainContent();
+        } else {
+            // Ошибка авторизации
+            showError('Доступ запрещен. Убедитесь, что вы ввели email, через который совершали покупку подписки на Boosty. В ином случае обратитесь к администратору. После покупки подписки второго уровня и выше выдаётся доступ в течение 24 часов.');
+        }
+    });
+    
+    // Очистка ошибки при вводе
+    emailInput.addEventListener('input', function() {
+        hideError();
+    });
+});
+
+function showAuthModal() {
+    document.getElementById('auth-modal').style.display = 'flex';
+    document.getElementById('main-container').style.opacity = '0.3';
+    document.getElementById('main-container').style.pointerEvents = 'none';
+}
+
+function showMainContent() {
+    document.getElementById('auth-modal').style.display = 'none';
+    document.getElementById('main-container').style.opacity = '1';
+    document.getElementById('main-container').style.pointerEvents = 'auto';
+    
+    // Запускаем основную анимацию после показа контента
+    setTimeout(() => {
+        initMainAnimations();
+    }, 100);
+}
+
+function showError(message) {
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.textContent = message;
+    errorMessage.classList.add('show');
+    
+    // Автоматически скрыть ошибку через 5 секунд
+    setTimeout(() => {
+        hideError();
+    }, 5000);
+}
+
+function hideError() {
+    const errorMessage = document.getElementById('error-message');
+    errorMessage.classList.remove('show');
+}
+
+// Функция выхода из системы
+function logout() {
+    localStorage.removeItem('brx_authorized');
+    localStorage.removeItem('brx_user_email');
+    showAuthModal();
+}
+
 // Добавление интерактивности и анимаций
 
-document.addEventListener('DOMContentLoaded', function() {
+function initMainAnimations() {
     // Анимация появления элементов при загрузке страницы
     const elements = document.querySelectorAll('.logo, .subtitle, .link-button, .etc-text');
     
@@ -146,4 +237,4 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.opacity = '1';
         }, 100);
     });
-});
+}

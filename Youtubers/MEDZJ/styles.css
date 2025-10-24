@@ -12,7 +12,7 @@ body{font-family:'Inter',sans-serif;background:linear-gradient(180deg,#0b1a12,#0
 .link-button{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(135deg,rgba(236,253,245,.96),rgba(254,252,232,.8));border-radius:16px;text-decoration:none;color:#134e4a;font-weight:700;border:2px solid transparent;box-shadow:0 6px 16px rgba(0,0,0,.2);transition:all .25s ease}
 .link-button:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.35),0 0 24px rgba(16,185,129,.35);border-color:#34d399;background:linear-gradient(135deg,#ffffff,rgba(16,185,129,.12))}
 .button-icon,.button-icon-right{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#ecfdf5;box-shadow:0 2px 8px rgba(0,0,0,.12)}
-.icon-image{width:30px;height:30px;object-fit:cover;border-radius:50%}
+.icon-image{width:42px;height:42px;object-fit:cover;border-radius:50%}
 @keyframes pulse{0%,100%{filter:drop-shadow(0 0 10px rgba(16,185,129,.75))}50%{filter:drop-shadow(0 0 18px rgba(101,67,33,.85))}}
 @media (max-width:768px){.main-content{padding:36px 20px}.logo-image{max-width:200px}.link-button{padding:12px 16px}}
 
